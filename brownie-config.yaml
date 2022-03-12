@@ -7,3 +7,15 @@ compiler:
       - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.1.0"
 wallets:
   from_key: ${PRIVATE_KEY}
+
+networks:
+  default: development
+  development:
+    verify: False
+  rinkeby:
+    verify: True
+  mainnet-fork:
+    verify: False
+  ganache-local:
+    verify: False
+  
