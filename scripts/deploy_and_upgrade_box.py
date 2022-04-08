@@ -22,9 +22,9 @@ def deploy_box():
     box_encoded_initializer_function = encode_function_data()
 
     proxy = TransparentUpgradeableProxy.deploy(
-        box.address,
-        proxy_admin.address,
-        box_encoded_initializer_function,
+        box.address,  # deploy with box as a implementation contract
+        proxy_admin.address,  # defined proxy admin
+        box_encoded_initializer_function,  # add initializer if any
         {"from": account, "gas_limit": 1000000},
     )
 
@@ -36,6 +36,7 @@ def deploy_box():
     print(proxy_box.retrieve())
     # we are using proxy_box address but can delegate the retrieve() call to "Box"
     try:
+        # try calling increment that only exist in box2
         proxy_box.increment({"from": account})
     except Exception as e:
         print(f"Exception{e}")
